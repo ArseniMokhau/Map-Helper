@@ -12,12 +12,6 @@ function App() {
   const [startLocation, setStartLocation] = useState('')
   const [endLocation, setEndLocation] = useState('')
 
-  const [startLocationDescription, setStartLocationDescription] = useState('')
-  const [endLocationDescription, setEndLocationDescription] = useState('')
-
-  const [startLocationImage, setStartLocationImage] = useState('')
-  const [endLocationImage, setEndLocationImage] = useState('')
-
   const [startFilter, setStartFilter] = useState('')
   const [endFilter, setEndFilter] = useState('')
 
@@ -39,12 +33,10 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const start = GetBuildingByName(startLocation)
-    const end = GetBuildingByName(endLocation)
-    if (start && end && start !== end) {
-      const embedUrl = getGoogleMapsEmbedUrl(start, end)
+    if (startLocation && endLocation && startLocation !== endLocation) {
+      const embedUrl = getGoogleMapsEmbedUrl(startLocation, endLocation)
       setEmbedURL(embedUrl)
-      const qrUrl = getGoogleMapsQRURL(start, end)
+      const qrUrl = getGoogleMapsQRURL(startLocation, endLocation)
       setQRURL(qrUrl)
     }
   }
@@ -55,33 +47,17 @@ function App() {
   const handleStartLocationSelect = (name) => {
     const location = GetBuildingByName(name);
 
-    setStartLocation(name)
+    setStartLocation(location)
     setStartFilter(name)
     setShowStartList(false)
-
-    if (location) {
-      const description = location.description
-      setStartLocationDescription(description)
-      
-      const image = location.image
-      setStartLocationImage(image)
-    }
   }
 
   const handleEndLocationSelect = (name) => {
     const location = GetBuildingByName(name);
 
-    setEndLocation(name)
+    setEndLocation(location)
     setEndFilter(name)
     setShowEndList(false)
-
-    if (location) {
-      const description = location.description
-      setEndLocationDescription(description)
-      
-      const image = location.image
-      setEndLocationImage(image)
-    }
   }
 
   return (
@@ -100,7 +76,7 @@ function App() {
               onFocus={() => setShowStartList(true)}
               onBlur={() => setTimeout(() => setShowStartList(false), 10)}>
             </input>
-            {showStartList && startFilter && (
+            {showStartList && (
               <ul className="autocomplete-list">
                 {filteredStartBuildings.map((building) => (
                   <li
@@ -108,7 +84,7 @@ function App() {
                     onMouseDown={() => handleStartLocationSelect(building.name)}
                     className="autocomplete-item"
                   >
-                    {building.name}
+                    {building.name} - {building.address}
                   </li>
                 ))}
               </ul>
@@ -125,7 +101,7 @@ function App() {
               onFocus={() => setShowEndList(true)}
               onBlur={() => setTimeout(() => setShowEndList(false), 10)}>
             </input>
-            {showEndList && endFilter && (
+            {showEndList && (
               <ul className="autocomplete-list">
                 {filteredEndBuildings.map((building) => (
                   <li
@@ -133,7 +109,7 @@ function App() {
                     onMouseDown={() => handleEndLocationSelect(building.name)}
                     className="autocomplete-item"
                   >
-                    {building.name}
+                    {building.name} - {building.address}
                   </li>
                 ))}
               </ul>
@@ -173,18 +149,20 @@ function App() {
 
       {/* Right Section */}
       <div className="right-section">
-        {startLocation && startLocationDescription && (
+        {startLocation && (
           <div className="building-description">
-          {startLocationImage && <img src={startLocationImage} alt={`${startLocation}`} className="building-image" />}
-          <h3>{startLocation}</h3>
-          <p>{startLocationDescription}</p>
+          {startLocation.image && <img src={startLocation.image} alt={`${startLocation}`} className="building-image" />}
+          <h2>{startLocation.name}</h2>
+          <h4>{startLocation.address}</h4>
+          <p>{startLocation.description}</p>
         </div>
         )}
-        {endLocation && endLocationDescription && (
+        {endLocation && (
         <div className="building-description">
-          {endLocationImage && <img src={endLocationImage} alt={`${endLocation}`} className="building-image" />}
-          <h3>{endLocation}</h3>
-          <p>{endLocationDescription}</p>
+          {endLocation.image && <img src={endLocation.image} alt={`${endLocation}`} className="building-image" />}
+          <h2>{endLocation.name}</h2>
+          <h4>{endLocation.address}</h4>
+          <p>{endLocation.description}</p>
         </div>
         )}
       </div>
