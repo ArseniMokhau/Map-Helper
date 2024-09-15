@@ -1,14 +1,10 @@
-import { Classrooms, Faculties, EmbedsByFaculty } from './data/Classrooms'
+import { EmbedsByBuilding, Buildings } from './data/Classrooms'
 import { QRCodeCanvas } from 'qrcode.react';
 import './App.css';
 import { useState } from 'react';
 
-function GetClassroomByName(name) {
-  return Classrooms.find(classroom => classroom.name === (name))
-}
-
-function GetFacultyByName(name) {
-  return Faculties.find(faculty => faculty.name === (name))
+function GetBuildingByName(name) {
+  return Buildings.find(building => building.name === (name))
 }
 
 function App() {
@@ -33,34 +29,31 @@ function App() {
 
 
   const getGoogleMapsEmbedUrl = (startLocation, endLocation) => {
-    const eURL = EmbedsByFaculty.find(url => url.startFaculty === startLocation.faculty && url.endFaculty === endLocation.faculty).embedURL
+    const eURL = EmbedsByBuilding.find(url => url.startBuilding === startLocation.abbreviation && url.endBuilding === endLocation.abbreviation).embedURL
     return eURL
   }
 
   const getGoogleMapsQRURL = (startLocation, endLocation) => {
-    return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(startLocation)}&destination=${encodeURIComponent(endLocation)}&travelmode=walking`
+    return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(startLocation.address)}&destination=${encodeURIComponent(endLocation.address)}&travelmode=walking`
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const start = GetClassroomByName(startLocation)
-    const end = GetClassroomByName(endLocation)
-
-    const startFaculty = GetFacultyByName(start.faculty)
-    const endFaculty = GetFacultyByName(end.faculty)
+    const start = GetBuildingByName(startLocation)
+    const end = GetBuildingByName(endLocation)
     if (start && end && start !== end) {
       const embedUrl = getGoogleMapsEmbedUrl(start, end)
       setEmbedURL(embedUrl)
-      const qrUrl = getGoogleMapsQRURL(startFaculty.address, endFaculty.address)
+      const qrUrl = getGoogleMapsQRURL(start, end)
       setQRURL(qrUrl)
     }
   }
 
-  const filteredStartClassrooms = Classrooms.filter(classroom => classroom.name.toLowerCase().includes(startFilter.toLowerCase()))
-  const filteredEndClassrooms = Classrooms.filter(classroom => classroom.name.toLowerCase().includes(endFilter.toLowerCase()))
+  const filteredStartBuildings = Buildings.filter(building => building.name.toLowerCase().includes(startFilter.toLowerCase()))
+  const filteredEndBuildings = Buildings.filter(building => building.name.toLowerCase().includes(endFilter.toLowerCase()))
 
   const handleStartLocationSelect = (name) => {
-    const location = GetClassroomByName(name);
+    const location = GetBuildingByName(name);
 
     setStartLocation(name)
     setStartFilter(name)
@@ -76,7 +69,7 @@ function App() {
   }
 
   const handleEndLocationSelect = (name) => {
-    const location = GetClassroomByName(name);
+    const location = GetBuildingByName(name);
 
     setEndLocation(name)
     setEndFilter(name)
@@ -109,13 +102,13 @@ function App() {
             </input>
             {showStartList && startFilter && (
               <ul className="autocomplete-list">
-                {filteredStartClassrooms.map((classroom) => (
+                {filteredStartBuildings.map((building) => (
                   <li
-                    key={classroom.name}
-                    onMouseDown={() => handleStartLocationSelect(classroom.name)}
+                    key={building.name}
+                    onMouseDown={() => handleStartLocationSelect(building.name)}
                     className="autocomplete-item"
                   >
-                    {classroom.name}
+                    {building.name}
                   </li>
                 ))}
               </ul>
@@ -134,13 +127,13 @@ function App() {
             </input>
             {showEndList && endFilter && (
               <ul className="autocomplete-list">
-                {filteredEndClassrooms.map((classroom) => (
+                {filteredEndBuildings.map((building) => (
                   <li
-                    key={classroom.name}
-                    onMouseDown={() => handleEndLocationSelect(classroom.name)}
+                    key={building.name}
+                    onMouseDown={() => handleEndLocationSelect(building.name)}
                     className="autocomplete-item"
                   >
-                    {classroom.name}
+                    {building.name}
                   </li>
                 ))}
               </ul>
