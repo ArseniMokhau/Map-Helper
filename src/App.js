@@ -62,19 +62,24 @@ function App() {
 
   return (
     <div className="container">
+
+      <header className="page-header">
+        <img src="/images/logo-polsl.png" alt="Header" className="header-image"/>
+      </header>
+      
       {/* Left Section */}
       <div className="left-section">
-        <h1>Select Start and End Locations</h1>
+        <h1>Wybierz lokalizacje początkową i końcową</h1>
         <form onSubmit={handleSubmit}>
-        <div className="form-group">
-            <label>Start Location:</label>
+          <div className="form-group">
+            <label>Lokalizacja początkowa:</label>
             <input
               type='text'
               value={startFilter}
               onChange={(e) => setStartFilter(e.target.value)}
-              placeholder='Type to filter'
+              placeholder='Filtruj lokalizacje'
               onFocus={() => setShowStartList(true)}
-              onBlur={() => setTimeout(() => setShowStartList(false), 10)}>
+              onBlur={() => setTimeout(() => setShowStartList(false), 10)} >
             </input>
             {showStartList && (
               <ul className="autocomplete-list">
@@ -92,14 +97,14 @@ function App() {
           </div>
 
           <div className="form-group">
-            <label>End Location:</label>
+            <label>Lokalizacja końcowa:</label>
             <input
               type='text'
               value={endFilter}
               onChange={(e) => setEndFilter(e.target.value)}
-              placeholder='Type to filter'
+              placeholder='Filtruj lokalizacje'
               onFocus={() => setShowEndList(true)}
-              onBlur={() => setTimeout(() => setShowEndList(false), 10)}>
+              onBlur={() => setTimeout(() => setShowEndList(false), 10)} >
             </input>
             {showEndList && (
               <ul className="autocomplete-list">
@@ -116,12 +121,11 @@ function App() {
             )}
           </div>
 
-          <button type='submit'>Get Directions</button>
+          <button type='submit'>Znajdź trasę</button>
         </form>
 
         {embedURL && (
           <div>
-            <h2>Directions</h2>
             <iframe
               title="Google Maps Directions"
               width="100%"
@@ -136,11 +140,11 @@ function App() {
 
         {qrURL && (
           <div className='qr-code-container'>
-            <h3>Or Scan The QR Code to View on Mobile</h3>
-            <QRCodeCanvas value={qrURL} size={128}/>
+            <h3>Zeskanuj kod QR, aby wyświetlić na telefonie</h3>
+            <QRCodeCanvas value={qrURL} size={128} />
             <p>
               <a href={qrURL} target="_blank" rel="noopener noreferrer">
-                Click here to open in Google Maps
+                Kliknij tutaj, aby otworzyć w Google Maps
               </a>
             </p>
           </div>
@@ -151,19 +155,19 @@ function App() {
       <div className="right-section">
         {startLocation && (
           <div className="building-description">
-          {startLocation.image && <img src={startLocation.image} alt={`${startLocation}`} className="building-image" />}
-          <h2>{startLocation.name}</h2>
-          <h4>{startLocation.address}</h4>
-          <p>{startLocation.description}</p>
-        </div>
+            {startLocation.image && <img src={startLocation.image} alt={`${startLocation}`} className="building-image" />}
+            <h2>{startLocation.name}</h2>
+            <h4>{startLocation.address}</h4>
+            <p>{startLocation.description}</p>
+          </div>
         )}
         {endLocation && (
-        <div className="building-description">
-          {endLocation.image && <img src={endLocation.image} alt={`${endLocation}`} className="building-image" />}
-          <h2>{endLocation.name}</h2>
-          <h4>{endLocation.address}</h4>
-          <p>{endLocation.description}</p>
-        </div>
+          <div className="building-description">
+            {endLocation.image && <img src={endLocation.image} alt={`${endLocation}`} className="building-image" />}
+            <h2>{endLocation.name}</h2>
+            <h4>{endLocation.address}</h4>
+            <p>{endLocation.description}</p>
+          </div>
         )}
       </div>
     </div>
