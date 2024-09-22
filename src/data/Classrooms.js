@@ -1,13 +1,13 @@
 export const Buildings = Object.freeze([
-    {name:'Wydziął Matematyki Stosowanej', abbreviation:'MS', address:'Kaszubska 23, 44-100 Gliwice', description:'MS opis', image:'/images/wydzial-rms-slide.jpg'},
-    {name:'Laboratorium Budownictwa', abbreviation:'LB', address:'Bolesława Krzywoustego 7, 44-100 Gliwice', description:'LB opis', image:'/images/wydzial_budownictwa_v3-1.jpg'},
-    {name:'Parking Politechnika Śląska Naukowo - CNT', abbreviation:'PCNT', address:'Stanisława Konarskiego 22b, 44-100 Gliwice', description:'Parking opis', image:'/images/Centrum-Nowych-Technologii-2.jpg'},
-    {name:'Parking Ośrodek Sportu i Rekreacji', abbreviation:'POSR', address:'Akademicka 26, 44-100 Gliwice', description:'Parking opis', image:'/images/Hala_OSiR.jpg'},
-    {name:'Parking Lodowisko TAFLA', abbreviation:'PLT', address:'Akademicka 29, 44-100 Gliwice', description:'Parking opis', image:'/images/tafla.jpg'},
-    {name:'Studium praktycznej nauki języków obcych', abbreviation:'SPNJO', address:'Akademicka 2A, 44-100 Gliwice', description:'Opis', image:'/images/kampus2.jpg'},
-    {name:'Centrum Edukacyjno-Kongresowe', abbreviation:'CEK', address:'Stanisława Konarskiego 18B, 44-100 Gliwice', description:'CEK opis', image:'/images/CEK-097.jpg'},
-    {name:'Centrum Nowych Technologii', abbreviation:'CNT', address:'Stanisława Konarskiego 22b, 44-100 Gliwice', description:'CNT opis', image:'/images/Centrum-Nowych-Technologii-2.jpg'},
-    {name:'Ośrodek Sportu', abbreviation:'OSPS', address:'Kaszubska 28, 44-100 Gliwice', description:'Ośrodek Sportu opis', image:'/images/nowa_hala.jpg'}
+    {name:'Wydziął Matematyki Stosowanej', abbreviation:'MS', address:'Kaszubska 23, 44-100 Gliwice', description:'Główny budynek wydziału, gdzie odbywają się zajęcia laboratoryjne.', image:'/images/wydzial-rms-slide.jpg'},
+    {name:'Laboratorium Budownictwa', abbreviation:'LB', address:'Bolesława Krzywoustego 7, 44-100 Gliwice', description:'Budynek Laboratorium Budownictwa, gdzie zwykle odbywają się ćwiczenia.', image:'/images/wydzial_budownictwa_v3-1.jpg'},
+    {name:'Parking Politechnika Śląska Naukowo - CNT', abbreviation:'PCNT', address:'Stanisława Konarskiego 22b, 44-100 Gliwice', description:'Bezpłatny parking obók Centrum Nowych Technologii.', image:'/images/Centrum-Nowych-Technologii-2.jpg'},
+    {name:'Parking Ośrodek Sportu i Rekreacji', abbreviation:'POSR', address:'Akademicka 26, 44-100 Gliwice', description:'Bezpłatny parking obók Ośrodku Sportu i Rekreacji.', image:'/images/Hala_OSiR.jpg'},
+    {name:'Parking Lodowisko TAFLA', abbreviation:'PLT', address:'Akademicka 29, 44-100 Gliwice', description:'Bezpłatny parking obók Lodowiska TAFLA.', image:'/images/tafla.jpg'},
+    {name:'Studium praktycznej nauki języków obcych', abbreviation:'SPNJO', address:'Akademicka 2A, 44-100 Gliwice', description:'Budynek, w którym odbywają się zajęcia z języków obcych.', image:'/images/kampus2.jpg'},
+    {name:'Centrum Edukacyjno-Kongresowe', abbreviation:'CEK', address:'Stanisława Konarskiego 18B, 44-100 Gliwice', description:'Budynek, w którym odbywają się wykłady, konferencje oraz ważne wydarzenia akademickie.', image:'/images/CEK-097.jpg'},
+    {name:'Centrum Nowych Technologii', abbreviation:'CNT', address:'Stanisława Konarskiego 22b, 44-100 Gliwice', description:'Budynek, w którym najczęściej odbywają się zajęcia z fizyki.', image:'/images/Centrum-Nowych-Technologii-2.jpg'},
+    {name:'Ośrodek Sportu', abbreviation:'OSPS', address:'Kaszubska 28, 44-100 Gliwice', description:'Budynek, w którym najczęściej odbywają się zajęcia z wychowania fizycznego.', image:'/images/nowa_hala.jpg'}
 ])
 
 export const EmbedsByBuilding = Object.freeze([
