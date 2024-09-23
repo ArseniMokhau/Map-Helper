@@ -64,7 +64,7 @@ function App() {
     <div className="container">
 
       <header className="page-header">
-        <img src="/images/logo-polsl.png" alt="Header" className="header-image"/>
+        <img src={process.env.PUBLIC_URL + "/images/logo-polsl.png"} alt="Header" className="header-image"/>
       </header>
       
       {/* Left Section */}
@@ -155,7 +155,7 @@ function App() {
       <div className="right-section">
         {startLocation && (
           <div className="building-description">
-            {startLocation.image && <img src={startLocation.image} alt={`${startLocation}`} className="building-image" />}
+            {startLocation.image && <img src={process.env.PUBLIC_URL + startLocation.image} alt={`${startLocation}`} className="building-image" />}
             <h2>{startLocation.name}</h2>
             <h4>{startLocation.address}</h4>
             <p>{startLocation.description}</p>
@@ -163,7 +163,7 @@ function App() {
         )}
         {endLocation && (
           <div className="building-description">
-            {endLocation.image && <img src={endLocation.image} alt={`${endLocation}`} className="building-image" />}
+            {endLocation.image && <img src={process.env.PUBLIC_URL + endLocation.image} alt={`${endLocation}`} className="building-image" />}
             <h2>{endLocation.name}</h2>
             <h4>{endLocation.address}</h4>
             <p>{endLocation.description}</p>
